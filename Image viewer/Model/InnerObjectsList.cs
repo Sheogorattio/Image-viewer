@@ -10,7 +10,7 @@ namespace Image_viewer.Model
     internal class InnerObjectsList
     {
         List<string> folders = new List<string>();
-        string path;
+        internal string path { get; set; }
         public List<string> Folders { set { folders.Add(value.ToString()); } }
         List<string> files = new List<string>();
         public List<string> Files { set { files.Add(value.ToString()); } }

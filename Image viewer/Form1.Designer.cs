@@ -87,6 +87,7 @@
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // imageList1
             // 
@@ -139,10 +140,10 @@
         private System.Windows.Forms.ComboBox DriveComboBox;
         private System.Windows.Forms.TextBox PathTextBox;
         private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.CheckBox PathCheckBox;
+        public System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

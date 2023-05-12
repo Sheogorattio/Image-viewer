@@ -14,6 +14,7 @@ namespace Image_viewer
 {
     public partial class Form1 : Form
     {
+        InnerObjectsController controller;
         public Form1()
         {
             InitializeComponent();
@@ -26,9 +27,18 @@ namespace Image_viewer
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            InnerObjectsController controller = new InnerObjectsController(DriveComboBox.Text + PathTextBox.Text);
-            controller.UpdateItemsList(listView1);
+            controller = new InnerObjectsController(DriveComboBox.Text + PathTextBox.Text, listView1, pictureBox1);
+            controller.UpdateItemsList();
         }
 
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)//double click on the selected file/folder
+        {
+
+            Pay your attention!!!!
+            //Добавить изменение пути при переходе двойном клике на папку или файл
+            
+
+            controller.OpenInnerObject(listView1.SelectedItems[0].Text);
+        }
     }
 }
