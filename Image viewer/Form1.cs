@@ -12,10 +12,11 @@ using System.Windows.Forms;
 
 namespace Image_viewer
 {
-    public partial class Form1 : Form
+    public partial class ImageViewer : Form
     {
+        
         InnerObjectsController controller;
-        public Form1()
+        public ImageViewer()
         {
             InitializeComponent();
             var drives = Directory.GetLogicalDrives();
@@ -43,18 +44,14 @@ namespace Image_viewer
             this.PathTextBox.Text = controller.CurPath;
         }
 
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)//sorting
         {
-            this.listView1.ListViewItemSorter = new SortingController(e.Column);
-
-            // Инвертирование направления сортировки, если колонка уже была выбрана
-            if (listView1.Sorting == SortOrder.Ascending)
-                listView1.Sorting = SortOrder.Descending;
-            else
-                listView1.Sorting = SortOrder.Ascending;
-
-            // Сортировка элементов
-            listView1.Sort();
+            try
+            {
+                this.listView1.ListViewItemSorter = new SortingController(e.Column);
+                listView1.Sort();
+            }
+            catch (Exception ex) { }
         }
     }
 }

@@ -36,7 +36,8 @@ namespace Image_viewer.Controllers
                DirectoryInfo info = new DirectoryInfo(CurPath + folder + "\\");
                var item = listView.Items.Add(folder);
                item.SubItems.Add(info.CreationTime.ToString());
-                item.SubItems.Add("Folder"); 
+                item.SubItems.Add("Folder");
+                item.SubItems.Add(" ");
            }
            foreach(string file in files)
             {
@@ -63,19 +64,27 @@ namespace Image_viewer.Controllers
             string _path = path.Remove(path.Length - 1);
             if (File.Exists(_path))
             {
-                //try
-                //{
-                    using (var stream = new FileStream(_path, FileMode.Open, FileAccess.ReadWrite))
+                try
+                {
+                    string ext = Path.GetExtension(_path);
+                    if (ext == ".bmp" || ext == ".gif" || ext == ".jpeg" || ext == ".png" || ext == ".jpg")
                     {
-                        pictureBox.Image = Image.FromStream(stream);
-                        CurPath = PrevPath;
-                        return true;
+                        using (var stream = new FileStream(_path, FileMode.Open, FileAccess.ReadWrite))
+                        {
+                            pictureBox.Image = Image.FromStream(stream);
+                            CurPath = PrevPath;
+                            return true;
+                        }
                     }
-                //}
-                //catch(Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
+                    else CurPath = PrevPath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Invalid picture format. Check image format.");
+                    CurPath = PrevPath;
+
+                }
             }
             return false;
         }
