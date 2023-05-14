@@ -43,5 +43,18 @@ namespace Image_viewer
             this.PathTextBox.Text = controller.CurPath;
         }
 
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            this.listView1.ListViewItemSorter = new SortingController(e.Column);
+
+            // Инвертирование направления сортировки, если колонка уже была выбрана
+            if (listView1.Sorting == SortOrder.Ascending)
+                listView1.Sorting = SortOrder.Descending;
+            else
+                listView1.Sorting = SortOrder.Ascending;
+
+            // Сортировка элементов
+            listView1.Sort();
+        }
     }
 }
