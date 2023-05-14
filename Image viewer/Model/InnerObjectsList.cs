@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Image_viewer.Model
 {
@@ -23,18 +24,25 @@ namespace Image_viewer.Model
         }
         void Updatelist()
         {
-            folders.Clear();
-            files.Clear();
-            DirectoryInfo root = new DirectoryInfo(path);
-            DirectoryInfo[] dir = root.GetDirectories();
-            FileInfo[] fls = root.GetFiles();
-            foreach (FileInfo file in fls)
+            try
             {
-                files.Add(file.Name);
+                folders.Clear();
+                files.Clear();
+                DirectoryInfo root = new DirectoryInfo(path);
+                DirectoryInfo[] dir = root.GetDirectories();
+                FileInfo[] fls = root.GetFiles();
+                foreach (FileInfo file in fls)
+                {
+                    files.Add(file.Name);
+                }
+                foreach (DirectoryInfo drct in dir)
+                {
+                    folders.Add(drct.Name);
+                }
             }
-            foreach (DirectoryInfo drct in dir)
+            catch (Exception ex)
             {
-                folders.Add(drct.Name);
+                MessageBox.Show(ex.Message);
             }
         }
         public List<string> GetObjectsList()

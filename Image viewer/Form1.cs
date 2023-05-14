@@ -25,20 +25,23 @@ namespace Image_viewer
             }
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)//click on the search button
         {
-            controller = new InnerObjectsController(DriveComboBox.Text + PathTextBox.Text, listView1, pictureBox1);
+            if(PathCheckBox.Checked == true)
+            {
+                controller = new InnerObjectsController(PathTextBox.Text, listView1, pictureBox1);
+            }
+            else { 
+            controller = new InnerObjectsController(DriveComboBox.Text, listView1, pictureBox1);
+            }
             controller.UpdateItemsList();
         }
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)//double click on the selected file/folder
         {
-
-            Pay your attention!!!!
-            //Добавить изменение пути при переходе двойном клике на папку или файл
-            
-
             controller.OpenInnerObject(listView1.SelectedItems[0].Text);
+            this.PathTextBox.Text = controller.CurPath;
         }
+
     }
 }

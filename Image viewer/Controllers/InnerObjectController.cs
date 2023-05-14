@@ -30,30 +30,52 @@ namespace Image_viewer.Controllers
         {
            listView.Items.Clear();
            List<string> folders = InnerObjects.GetFolders();
-           List<string> fildes = InnerObjects.GetFiles();
+           List<string> files = InnerObjects.GetFiles();
            foreach (string folder in folders)
            {
-                listView.Items.Add(folder).ImageIndex = 1;
+               DirectoryInfo info = new DirectoryInfo(CurPath + folder + "\\");
+               var item = listView.Items.Add(folder);
+               item.SubItems.Add(info.CreationTime.ToString());
+                item.SubItems.Add("Folder"); 
            }
+           foreach(string file in files)
+            {
+                FileInfo info = new FileInfo(CurPath + file + "\\");
+                var item = listView.Items.Add(file);
+                item.SubItems.Add(info.CreationTime.ToString());
+                item.SubItems.Add("File");
+                item.SubItems.Add((info.Length/(Math.Pow(1024, 2))).ToString() + " MB");
+            }
         }
 
-        public void OpenInnerObject(string path)
+        public void OpenInnerObject(string objectName)
         {
-            if (OpenFolder(path) == false)
+            PrevPath = CurPath;
+            CurPath +=  objectName + "\\";
+            if (OpenFolder(CurPath) == false)
             {
-                OpenImage(path);
+                OpenImage(CurPath);
             }
         }
 
         public bool OpenImage(string path)
         {
-            if (File.Exists(path))
+            string _path = path.Remove(path.Length - 1);
+            if (File.Exists(_path))
             {
-                using (var img = Image.FromFile(path))
-                {
-                    pictureBox.Image = img;
-                }
-                return true;
+                //try
+                //{
+                    using (var stream = new FileStream(_path, FileMode.Open, FileAccess.ReadWrite))
+                    {
+                        pictureBox.Image = Image.FromStream(stream);
+                        CurPath = PrevPath;
+                        return true;
+                    }
+                //}
+                //catch(Exception ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //}
             }
             return false;
         }
@@ -61,9 +83,7 @@ namespace Image_viewer.Controllers
         public bool OpenFolder(string path)
         {
             if (Directory.Exists(path))
-            {
-                PrevPath = CurPath;
-                CurPath = path;
+            {            
                 InnerObjects.path = CurPath;
                 UpdateItemsList();
                 return true;
