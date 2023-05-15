@@ -17,6 +17,7 @@ namespace Image_viewer
         
         InnerObjectsController controller;
         CopyPasteController copyPasteController = new CopyPasteController();
+        HistoryController historyController;
         public ImageViewer()
         {
             InitializeComponent();
@@ -25,6 +26,8 @@ namespace Image_viewer
             {
                 DriveComboBox.Items.Add(drive);
             }
+            this.Text = "ImageViewer";
+            historyController = new HistoryController(PathTextBox);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)//click on the search button
@@ -32,9 +35,13 @@ namespace Image_viewer
             if(PathCheckBox.Checked == true)
             {
                 controller = new InnerObjectsController(PathTextBox.Text, listView1, pictureBox1);
+                //PathTextBox.Items.Add(PathTextBox.Text);
+                historyController.Add(PathTextBox.Text);
             }
             else { 
-            controller = new InnerObjectsController(DriveComboBox.Text, listView1, pictureBox1);
+                controller = new InnerObjectsController(DriveComboBox.Text, listView1, pictureBox1);
+                //PathTextBox.Items.Add(DriveComboBox.Text);
+                historyController.Add(DriveComboBox.Text);
             }
             controller.UpdateItemsList();
         }
@@ -43,6 +50,11 @@ namespace Image_viewer
         {
             controller.OpenInnerObject(listView1.SelectedItems[0].Text);
             this.PathTextBox.Text = controller.CurPath;
+            if (PathTextBox.Items[PathTextBox.Items.Count-1].ToString() != controller.CurPath || PathTextBox.Items.Count<1)
+            {
+                //PathTextBox.Items.Add(controller.CurPath);
+                historyController.Add(PathTextBox.Text);
+            }
         }
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)//sorting
@@ -69,6 +81,28 @@ namespace Image_viewer
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             copyPasteController.Delete(PathTextBox.Text + listView1.SelectedItems[0].Text);
+            controller.UpdateItemsList();
+        }
+
+        private void HistoryBack_Click(object sender, EventArgs e)
+        {
+            
+            controller = new InnerObjectsController(historyController.MoveBack(), listView1, pictureBox1);
+            controller.UpdateItemsList();
+        }
+
+        private void HistoryForward_Click(object sender, EventArgs e)
+        {
+           
+            controller = new InnerObjectsController(historyController.MoveForward(), listView1, pictureBox1);
+            controller.UpdateItemsList();
+        }
+
+        private void ClearHistory_Click(object sender, EventArgs e)
+        {
+            historyController.Clear();
+            controller = new InnerObjectsController(DriveComboBox.Items[0].ToString(), listView1, pictureBox1);
+            historyController.Add(DriveComboBox.Items[0].ToString());
             controller.UpdateItemsList();
         }
     }

@@ -13,7 +13,8 @@ namespace Image_viewer.Controllers
 {
     public class InnerObjectsController: ImageHandler, FolderHandler
     {
-        public string CurPath { set; get; }
+        string curPath;
+        public string CurPath { set { curPath = value; } get { return curPath; } }
         public string PrevPath { get; set; }
         InnerObjectsList InnerObjects;
         ListView listView;

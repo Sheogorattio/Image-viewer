@@ -32,25 +32,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageViewer));
             this.label1 = new System.Windows.Forms.Label();
             this.DriveComboBox = new System.Windows.Forms.ComboBox();
-            this.PathTextBox = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PathCheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PathCheckBox = new System.Windows.Forms.CheckBox();
+            this.PathTextBox = new System.Windows.Forms.ComboBox();
+            this.HistoryBack = new System.Windows.Forms.Button();
+            this.HistoryForward = new System.Windows.Forms.Button();
+            this.ClearHistory = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,13 +69,6 @@
             this.DriveComboBox.Name = "DriveComboBox";
             this.DriveComboBox.Size = new System.Drawing.Size(62, 24);
             this.DriveComboBox.TabIndex = 2;
-            // 
-            // PathTextBox
-            // 
-            this.PathTextBox.Location = new System.Drawing.Point(217, 8);
-            this.PathTextBox.Name = "PathTextBox";
-            this.PathTextBox.Size = new System.Drawing.Size(327, 22);
-            this.PathTextBox.TabIndex = 3;
             // 
             // SearchButton
             // 
@@ -123,6 +116,37 @@
             // 
             this.columnHeader4.Text = "Size";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 76);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -134,7 +158,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(560, 41);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(372, 397);
+            this.pictureBox1.Size = new System.Drawing.Size(318, 397);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
@@ -149,75 +173,63 @@
             this.PathCheckBox.Text = "Path:";
             this.PathCheckBox.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
+            // PathTextBox
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
+            this.PathTextBox.FormattingEnabled = true;
+            this.PathTextBox.Location = new System.Drawing.Point(217, 7);
+            this.PathTextBox.Name = "PathTextBox";
+            this.PathTextBox.Size = new System.Drawing.Size(327, 24);
+            this.PathTextBox.TabIndex = 9;
             // 
-            // viewToolStripMenuItem
+            // HistoryBack
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.detailsToolStripMenuItem,
-            this.iconsToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
-            this.viewToolStripMenuItem.Text = "View";
+            this.HistoryBack.Location = new System.Drawing.Point(641, 7);
+            this.HistoryBack.Name = "HistoryBack";
+            this.HistoryBack.Size = new System.Drawing.Size(75, 23);
+            this.HistoryBack.TabIndex = 10;
+            this.HistoryBack.Text = "Back";
+            this.HistoryBack.UseVisualStyleBackColor = true;
+            this.HistoryBack.Click += new System.EventHandler(this.HistoryBack_Click);
             // 
-            // detailsToolStripMenuItem
+            // HistoryForward
             // 
-            this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
-            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.detailsToolStripMenuItem.Text = "Details";
+            this.HistoryForward.Location = new System.Drawing.Point(722, 8);
+            this.HistoryForward.Name = "HistoryForward";
+            this.HistoryForward.Size = new System.Drawing.Size(75, 23);
+            this.HistoryForward.TabIndex = 10;
+            this.HistoryForward.Text = "Forward";
+            this.HistoryForward.UseVisualStyleBackColor = true;
+            this.HistoryForward.Click += new System.EventHandler(this.HistoryForward_Click);
             // 
-            // iconsToolStripMenuItem
+            // ClearHistory
             // 
-            this.iconsToolStripMenuItem.Name = "iconsToolStripMenuItem";
-            this.iconsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.iconsToolStripMenuItem.Text = "Icons";
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.ClearHistory.Location = new System.Drawing.Point(803, 9);
+            this.ClearHistory.Name = "ClearHistory";
+            this.ClearHistory.Size = new System.Drawing.Size(75, 23);
+            this.ClearHistory.TabIndex = 10;
+            this.ClearHistory.Text = "Clear";
+            this.ClearHistory.UseVisualStyleBackColor = true;
+            this.ClearHistory.Click += new System.EventHandler(this.ClearHistory_Click);
             // 
             // ImageViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 450);
+            this.ClientSize = new System.Drawing.Size(888, 450);
+            this.Controls.Add(this.ClearHistory);
+            this.Controls.Add(this.HistoryForward);
+            this.Controls.Add(this.HistoryBack);
+            this.Controls.Add(this.PathTextBox);
             this.Controls.Add(this.PathCheckBox);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.SearchButton);
-            this.Controls.Add(this.PathTextBox);
             this.Controls.Add(this.DriveComboBox);
             this.Controls.Add(this.label1);
             this.Name = "ImageViewer";
             this.Text = "s";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,7 +239,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox DriveComboBox;
-        private System.Windows.Forms.TextBox PathTextBox;
         private System.Windows.Forms.Button SearchButton;
         public System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.CheckBox PathCheckBox;
@@ -238,12 +249,13 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem iconsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ComboBox PathTextBox;
+        private System.Windows.Forms.Button HistoryBack;
+        private System.Windows.Forms.Button HistoryForward;
+        private System.Windows.Forms.Button ClearHistory;
     }
 }
 
