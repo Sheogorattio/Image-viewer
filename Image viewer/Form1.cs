@@ -16,6 +16,7 @@ namespace Image_viewer
     {
         
         InnerObjectsController controller;
+        CopyPasteController copyPasteController = new CopyPasteController();
         public ImageViewer()
         {
             InitializeComponent();
@@ -52,6 +53,23 @@ namespace Image_viewer
                 listView1.Sort();
             }
             catch (Exception ex) { }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyPasteController.Copy(PathTextBox.Text + listView1.SelectedItems[0].Text);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyPasteController.Paste(PathTextBox.Text);
+            controller.UpdateItemsList();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyPasteController.Delete(PathTextBox.Text + listView1.SelectedItems[0].Text);
+            controller.UpdateItemsList();
         }
     }
 }
