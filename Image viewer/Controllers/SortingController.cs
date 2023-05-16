@@ -16,12 +16,11 @@ namespace Image_viewer.Controllers
             col = coloumn;
         }
         public int Compare(object x, object y)
-        { 
-                if (col == 1)
-                {
-                    throw (new Exception());
-                }
-                else return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+        {
+            string textX = ((ListViewItem)x).SubItems[col].Text;
+            string textY = ((ListViewItem)y).SubItems[col].Text;
+
+            return String.Compare(textX, textY);
         }
     }
 }

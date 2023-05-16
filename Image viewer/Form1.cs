@@ -65,6 +65,8 @@ namespace Image_viewer
                 listView1.Sort();
             }
             catch (Exception ex) { }
+            this.listView1.Sorting = SortOrder.None;
+            this.listView1.ListViewItemSorter = null;
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
