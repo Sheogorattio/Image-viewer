@@ -24,12 +24,15 @@ namespace Image_viewer.Controllers
             }
 
 
-            Image sourceImage = Image.FromFile(filePath);
 
 
-            if(targetFormat == ".png") { targetImageFormat = ImageFormat.Png; }
-            else if (targetFormat == ".jpeg") { targetImageFormat= ImageFormat.Jpeg; }
+
+            if (targetFormat == ".png") { targetImageFormat = ImageFormat.Png; }
+            else if (targetFormat == ".jpeg") { targetImageFormat = ImageFormat.Jpeg; }
             else if (targetFormat == ".bmp") { targetImageFormat = ImageFormat.Bmp; }
+            else { return; }
+
+            Image sourceImage = Image.FromFile(filePath);
 
 
             targetImagePath = filePath.Remove(filePath.Length - new FileInfo(filePath).Name.Length ) + Path.GetFileNameWithoutExtension(filePath) + targetFormat;
