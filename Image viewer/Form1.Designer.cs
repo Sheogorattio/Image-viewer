@@ -49,6 +49,10 @@
             this.HistoryBack = new System.Windows.Forms.Button();
             this.HistoryForward = new System.Windows.Forms.Button();
             this.ClearHistory = new System.Windows.Forms.Button();
+            this.covnertToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jpegToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bmpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -122,9 +126,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.covnertToToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
             // 
             // copyToolStripMenuItem
             // 
@@ -180,9 +185,11 @@
             this.PathTextBox.Name = "PathTextBox";
             this.PathTextBox.Size = new System.Drawing.Size(327, 24);
             this.PathTextBox.TabIndex = 9;
+            this.PathTextBox.SelectedValueChanged += new System.EventHandler(this.PathTextBox_SelectedValueChanged);
             // 
             // HistoryBack
             // 
+            this.HistoryBack.Enabled = false;
             this.HistoryBack.Location = new System.Drawing.Point(641, 7);
             this.HistoryBack.Name = "HistoryBack";
             this.HistoryBack.Size = new System.Drawing.Size(75, 23);
@@ -193,6 +200,7 @@
             // 
             // HistoryForward
             // 
+            this.HistoryForward.Enabled = false;
             this.HistoryForward.Location = new System.Drawing.Point(722, 8);
             this.HistoryForward.Name = "HistoryForward";
             this.HistoryForward.Size = new System.Drawing.Size(75, 23);
@@ -203,6 +211,7 @@
             // 
             // ClearHistory
             // 
+            this.ClearHistory.Enabled = false;
             this.ClearHistory.Location = new System.Drawing.Point(803, 9);
             this.ClearHistory.Name = "ClearHistory";
             this.ClearHistory.Size = new System.Drawing.Size(75, 23);
@@ -210,6 +219,37 @@
             this.ClearHistory.Text = "Clear";
             this.ClearHistory.UseVisualStyleBackColor = true;
             this.ClearHistory.Click += new System.EventHandler(this.ClearHistory_Click);
+            // 
+            // covnertToToolStripMenuItem
+            // 
+            this.covnertToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pngToolStripMenuItem,
+            this.jpegToolStripMenuItem,
+            this.bmpToolStripMenuItem});
+            this.covnertToToolStripMenuItem.Name = "covnertToToolStripMenuItem";
+            this.covnertToToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.covnertToToolStripMenuItem.Text = "Covnert to";
+            // 
+            // pngToolStripMenuItem
+            // 
+            this.pngToolStripMenuItem.Name = "pngToolStripMenuItem";
+            this.pngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pngToolStripMenuItem.Text = ".png";
+            this.pngToolStripMenuItem.Click += new System.EventHandler(this.pngToolStripMenuItem_Click);
+            // 
+            // jpegToolStripMenuItem
+            // 
+            this.jpegToolStripMenuItem.Name = "jpegToolStripMenuItem";
+            this.jpegToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.jpegToolStripMenuItem.Text = ".jpeg";
+            this.jpegToolStripMenuItem.Click += new System.EventHandler(this.jpegToolStripMenuItem_Click);
+            // 
+            // bmpToolStripMenuItem
+            // 
+            this.bmpToolStripMenuItem.Name = "bmpToolStripMenuItem";
+            this.bmpToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.bmpToolStripMenuItem.Text = ".bmp";
+            this.bmpToolStripMenuItem.Click += new System.EventHandler(this.bmpToolStripMenuItem_Click);
             // 
             // ImageViewer
             // 
@@ -226,6 +266,8 @@
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.DriveComboBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "ImageViewer";
             this.Text = "s";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -256,6 +298,10 @@
         private System.Windows.Forms.Button HistoryBack;
         private System.Windows.Forms.Button HistoryForward;
         private System.Windows.Forms.Button ClearHistory;
+        private System.Windows.Forms.ToolStripMenuItem covnertToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jpegToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bmpToolStripMenuItem;
     }
 }
 

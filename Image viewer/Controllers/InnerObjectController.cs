@@ -27,6 +27,13 @@ namespace Image_viewer.Controllers
             this.listView = listView;
             this.pictureBox = pictureBox;
         }
+
+        public void ChangePath(string path)
+        {
+            CurPath = path;
+            PrevPath= path;
+            InnerObjects.path = CurPath;
+        }
         public void UpdateItemsList()
         {
            listView.Items.Clear();
