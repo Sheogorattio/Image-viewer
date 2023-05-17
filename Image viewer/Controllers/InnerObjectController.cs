@@ -79,8 +79,10 @@ namespace Image_viewer.Controllers
                     {
                         using (var stream = new FileStream(_path, FileMode.Open, FileAccess.ReadWrite))
                         {
+                            
                             pictureBox.Image = Image.FromStream(stream);
                             CurPath = PrevPath;
+
                             return true;
                         }
                     }

@@ -129,7 +129,7 @@
             this.deleteToolStripMenuItem,
             this.covnertToToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 100);
             // 
             // copyToolStripMenuItem
             // 
@@ -201,7 +201,7 @@
             // HistoryForward
             // 
             this.HistoryForward.Enabled = false;
-            this.HistoryForward.Location = new System.Drawing.Point(722, 8);
+            this.HistoryForward.Location = new System.Drawing.Point(722, 6);
             this.HistoryForward.Name = "HistoryForward";
             this.HistoryForward.Size = new System.Drawing.Size(75, 23);
             this.HistoryForward.TabIndex = 10;
@@ -212,7 +212,7 @@
             // ClearHistory
             // 
             this.ClearHistory.Enabled = false;
-            this.ClearHistory.Location = new System.Drawing.Point(803, 9);
+            this.ClearHistory.Location = new System.Drawing.Point(803, 6);
             this.ClearHistory.Name = "ClearHistory";
             this.ClearHistory.Size = new System.Drawing.Size(75, 23);
             this.ClearHistory.TabIndex = 10;

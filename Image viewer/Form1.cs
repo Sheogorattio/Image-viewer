@@ -28,6 +28,7 @@ namespace Image_viewer
                 DriveComboBox.Items.Add(drive);
             }
             this.Text = "ImageViewer";
+            this.Icon = new Icon("..\\..\\Images\\icon.ico");
             historyController = new HistoryController(PathTextBox);
         }
 
